@@ -2,7 +2,7 @@ INCLUDES=-I./include -I/usr/include/SDL2 -D_GNU_SOURCE=1 -D_REENTRANT
 LIBS=-lSDL2
 FLAGS=-g
 
-OBJECTS=./build/chip8memory.o ./build/chip8stack.o ./build/chip8keyboard.o
+OBJECTS=./build/chip8memory.o ./build/chip8stack.o ./build/chip8keyboard.o ./build/chip8.o
 
 all: $(OBJECTS)
 	gcc $(FLAGS) $(INCLUDES) ./src/main.c $(OBJECTS) $(LIBS) -o ./bin/main
@@ -15,6 +15,9 @@ all: $(OBJECTS)
 
 ./build/chip8keyboard.o: ./src/chip8keyboard.c
 	gcc $(FLAGS) $(INCLUDES) -c ./src/chip8keyboard.c -o ./build/chip8keyboard.o	
+
+./build/chip8.o: ./src/chip8.c
+	gcc $(FLAGS) $(INCLUDES) -c ./src/chip8.c -o ./build/chip8.o	
 
 clean:
 	rm -rf ./bin/main ./build/*.o
