@@ -1,10 +1,12 @@
 #include <stdbool.h>
+#include <unistd.h>
 #include <SDL2/SDL_events.h>
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL_video.h>
 #include <SDL2/SDL.h>
 #include "../include/chip8.h"
 #include "../include/chip8keyboard.h"
+
 
 const char keyboard_map[CHIP8_TOTAL_KEYS] = {
     SDLK_0, SDLK_1, SDLK_2, SDLK_3, SDLK_4, SDLK_5,
@@ -92,6 +94,13 @@ int main(int argc, char** argv)
         }
 
         SDL_RenderPresent(renderer);
+
+        if (chip8.registers.delay_timer > 0)
+        {
+            usleep(100000);
+            chip8.registers.delay_timer -= 1;
+        }
+
     }
 
     SDL_DestroyWindow(window);
