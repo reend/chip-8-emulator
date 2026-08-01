@@ -1,6 +1,6 @@
 INCLUDES=-I./include -I/usr/include/SDL2 -D_GNU_SOURCE=1 -D_REENTRANT
 LIBS=-lSDL2
-FLAGS=-g
+FLAGS=-g -no-pie
 
 OBJECTS=./build/chip8memory.o ./build/chip8stack.o ./build/chip8keyboard.o ./build/chip8.o ./build/chip8screen.o 
 
